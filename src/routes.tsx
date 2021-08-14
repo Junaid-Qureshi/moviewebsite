@@ -1,4 +1,8 @@
 import {RouteComponentProps, Route} from "react-router-dom"
+import About from "./Pages/About";
+import Contact from "./Pages/Contact";
+import Home from "./Pages/Home";
+import Movies from "./Pages/Movies";
 
 interface Page {
     path: string;
@@ -9,22 +13,22 @@ interface Page {
 const routes: Page[] = [
     {
         path: '/',
-        component: null,
+        component: Home,
         exact: true
     },
     {
         path: '/Movies',
-        component: null,
+        component: Movies,
         exact: true
     },
     {
         path: '/About',
-        component: null,
+        component: About,
         exact: true,
     },
     {
         path: '/Contact',
-        component: null,
+        component: Contact,
         exact: true,
     }
 ]
