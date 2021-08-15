@@ -1,7 +1,8 @@
-import {RouteComponentProps, Route} from "react-router-dom"
+import { RouteComponentProps, Route } from "react-router-dom";
 import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 import Home from "./Pages/Home";
+import MovieDetails from "./Pages/MovieDetails";
 import Movies from "./Pages/Movies";
 
 interface Page {
@@ -12,39 +13,45 @@ interface Page {
 
 const routes: Page[] = [
     {
-        path: '/',
+        path: "/",
         component: Home,
-        exact: true
+        exact: true,
     },
     {
-        path: '/Movies',
+        path: "/Movies",
         component: Movies,
-        exact: true
+        exact: true,
     },
     {
-        path: '/About',
+        path: "/About",
         component: About,
         exact: true,
     },
     {
-        path: '/Contact',
+        path: "/Contact",
         component: Contact,
         exact: true,
-    }
-]
+    },
+    {
+        path: "/MovieDetails",
+        component: MovieDetails,
+        exact: true,
+    },
+];
 
 const Routes = () => {
     return (
         <>
             {routes.map((route, index) => (
-                <Route 
+                <Route
                     key={index}
                     path={route.path}
                     component={route.component}
-                    exact={route.exact}/>
+                    exact={route.exact}
+                />
             ))}
         </>
-    )
-}
+    );
+};
 
 export default Routes;

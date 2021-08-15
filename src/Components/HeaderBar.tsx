@@ -1,4 +1,4 @@
-import { AppBar, Typography, Button, styled, Box, Toolbar } from "@material-ui/core";
+import { AppBar, Typography, styled, Box, Toolbar } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -14,7 +14,7 @@ const StyledLink = styled(Link)({
     padding: "0 38px",
     height: "100%",
     "&:hover": {
-        backgroundColor: "#f6f9ff1a",
+        backgroundColor: "#4a4e69",
     },
     fontSize: 16,
 });
@@ -23,15 +23,19 @@ const StyledToolbar = styled(Toolbar)({
     height: "80px",
 });
 
+const StyledAppBar = styled(AppBar)({
+    backgroundColor: "#22223b",
+});
+
 const HeaderBar = (props: props) => {
     return (
         <Box minHeight="100vh">
-            <AppBar position="static">
+            <StyledAppBar position="static" elevation={0}>
                 <StyledToolbar>
                     <Box display="flex" width="9.5rem">
-                        <Typography variant="h5">Rentals R' Us</Typography>
+                        <Typography variant="h5">Movies R' Us</Typography>
                     </Box>
-                    <Box display="flex" flexGrow={1} marginLeft="30px" height="100vh">
+                    <Box display="flex" flexGrow={1} marginLeft="30px">
                         <StyledLink to="/">
                             <Typography>Home</Typography>
                         </StyledLink>
@@ -46,7 +50,7 @@ const HeaderBar = (props: props) => {
                         </StyledLink>
                     </Box>
                 </StyledToolbar>
-            </AppBar>
+            </StyledAppBar>
             <main>{props.children}</main>
         </Box>
     );
