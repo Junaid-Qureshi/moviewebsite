@@ -13,12 +13,11 @@ import {
 import { ICellTextProps } from "ka-table/props";
 import { DispatchFunc } from "ka-table/types";
 import { Box, Card, FormControl, MenuItem, Select, Typography } from "@material-ui/core";
-import { useEffect, useState } from "react";
-import { MovieRecord } from "../types";
-import Footer from "../Components/Footer";
+import { useState } from "react";
 import DeleteRow from "../Components/DeleteButton";
 import Navigatebutton from "../Components/NavigateButton";
 import AddButton from "../Components/AddButton";
+import useFetch from "../Hooks/useFetch";
 
 const FormatSelector: React.FC<ICellTextProps> = ({ column, dispatch, rowKeyValue, value }) => {
     const [editorValue, setValue] = useState(value);
@@ -150,23 +149,14 @@ const initTableProps: ITableProps = {
 
 const Movies = () => {
     const [tableProps, changeTableProps] = useState(initTableProps);
+    const fetch = useFetch();
 
     const dispatch: DispatchFunc = async action => {
         changeTableProps((prevState: ITableProps) => kaReducer(prevState, action));
 
         if (action.type === ActionType.LoadData) {
             dispatch(showLoading());
-            const result = await fetch("/api/movies")
-                .then(res => {
-                    if (res.ok) {
-                        return res.text();
-                    }
-                    throw res;
-                })
-                .then(data => {
-                    const parsedData = JSON.parse(data);
-                    return parsedData as MovieRecord[];
-                });
+            const result = await fetch<any>("/api/movies");
             dispatch(updateData(result));
             dispatch(hideLoading());
         } else if (action.type === ActionType.UpdateCellValue) {
