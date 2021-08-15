@@ -4,7 +4,6 @@ import Routes from "./routes";
 import { Route, Switch } from "react-router";
 import HeaderBar from "./Components/HeaderBar";
 import Home from "./Pages/Home";
-import Footer from "./Components/Footer";
 
 function App() {
     return (
