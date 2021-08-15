@@ -8,7 +8,13 @@ module.exports = async (req, res) => {
     try {
         let { data: movie } = await supabase
             .from("movie")
-            .update({ [req.body.columnKey]: req.body.value })
+            .insert(
+                { title: req.body.title },
+                { format: req.body.format },
+                { length: req.body.length },
+                { release_year: req.body.release_year },
+                { rating: req.body.rating }
+            )
             .eq("id", req.body.id);
         res.send(JSON.stringify(movie));
     } catch (error) {
